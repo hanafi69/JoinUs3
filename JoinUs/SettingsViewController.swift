@@ -29,6 +29,8 @@ class SettingsViewController: UIViewController {
         }
     }
 
+        
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
@@ -85,6 +87,7 @@ class SettingsViewController: UIViewController {
     
     
     }
-
+    
+    
 
 }

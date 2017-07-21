@@ -9,9 +9,9 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-import FBSDKLoginKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!{
         didSet{
@@ -45,11 +45,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         }
     }
     
-    @IBOutlet weak var fbLoginButton: FBSDKLoginButton!{
-        didSet{
-            fbLoginButton.delegate = self
-        }
-    }
+    
+    
+        
+    @IBOutlet weak var joinUsLabel: UILabel!
+    
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
@@ -58,13 +58,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         setupSpinner()
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
+        labelBorder()
+        buttonRadius()
+    }
+    
+    func buttonRadius() {
+        
+        loginButton.layer.cornerRadius = 5.0
+        registerButton.layer.cornerRadius = 5.0
+        
+    }
+
+    
+
+    
+    func labelBorder() {
+        
+        joinUsLabel.layer.borderColor = UIColor.black.cgColor
+        joinUsLabel.layer.borderWidth = 2.0
+        
+        
     }
 
     
     func didTappedRegisterButton(_ sender : Any) {
     
         let authStoryboard = UIStoryboard(name: "Auth", bundle: Bundle.main)
-        let registerViewController = authStoryboard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        let registerViewController = authStoryboard.instantiateViewController(withIdentifier: "UserSignUpViewController") as! UserSignUpViewController
         self.navigationController?.pushViewController(registerViewController, animated: true)
     
     
@@ -102,68 +122,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 
                 print("User exist \(user?.uid ?? "")")
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let mainVC = storyboard.instantiateViewController(withIdentifier: "ViewController")
+                let mainVC = storyboard.instantiateViewController(withIdentifier: "MainViewController")
                 self.present(mainVC, animated: true, completion: nil)
 
             })
         }
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if let error = error {
-            
-            print(error.localizedDescription)
-            fbAlert(message: "Please try again")
-            return
-            
-        } else if (result.isCancelled == true){
-            
-            print("Cancelled")
-            
-        } else {
-            
-            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            Auth.auth().signIn(with: credential) { (user, error) in
-                print("user logged in the firebase")
-                
-                let ref = Database.database().reference(fromURL: "https://joinus-1d50d.firebaseio.com/")
-                
-                guard let uid = user?.uid else {
-                    return
-                }
-                
-                let userReference = ref.child("users").child(uid)
-                
-                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name,email"])
-                graphRequest.start(completionHandler: { (connection, result, error) in
-                    if error != nil {
-                        print("\(String(describing: error))")
-                    } else {
-                        let values : [String: Any] = result as! [String : Any]
-                        
-                        userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                            if error != nil {
-                                print("\(String(describing: error))")
-                                return
-                            }
-                            
-                            // no error, so it means we've saved the user into our firebase database successfully
-                            print("Save the user successfully into Firebase database")
-                        })
-                    }
-                })
-            }
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let mainVC = storyboard.instantiateViewController(withIdentifier: "ViewController")
-            self.present(mainVC, animated: true, completion: nil)
-        }
-    }
     
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("Facebook logout successfully!")
-        fbAlert(message: "Facebook logout successfully!")
-    }
     
     func setupSpinner(){
         myActivityIndicator.center = view.center
@@ -191,13 +157,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }
     
-    func fbAlert(message: String){
-        let alertController = UIAlertController(title: "Login Error", message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(ok)
-        self.present(alertController, animated: true, completion: nil)
-    }
-
 
     
     

@@ -19,6 +19,8 @@ class MainViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+            tableView.rowHeight = 150
+            
         
         }
     }

@@ -23,11 +23,13 @@ class LoginAndSignUpPageViewController: UIViewController {
             
         }
     }
+    @IBOutlet weak var joinUsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         buttonRadius()
+        labelBorder()
         
     }
     
@@ -37,9 +39,13 @@ class LoginAndSignUpPageViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
         
+        self.navigationController?.navigationBar.tintColor = UIColor.black
     
     }
+    
+    
     
     func buttonRadius() {
         
@@ -54,10 +60,19 @@ class LoginAndSignUpPageViewController: UIViewController {
     
     }
     
+    func labelBorder() {
+    
+        joinUsLabel.layer.borderColor = UIColor.black.cgColor
+        joinUsLabel.layer.borderWidth = 2.0
+    
+    
+    }
+    
     func didTappedSignUpButton(_ sender : Any) {
     
         let storyboard = UIStoryboard(name: "Auth", bundle: Bundle.main)
-        let registerViewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewController")
+        let registerViewController = storyboard.instantiateViewController(withIdentifier: "UserSignUpViewController") as! UserSignUpViewController
+        
         self.navigationController?.pushViewController(registerViewController, animated: true)
     
     

@@ -68,11 +68,12 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate {
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     var isImageSelected : Bool = false
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSpinner()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.title = "Your details"
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
         
@@ -80,8 +81,26 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(sender:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         imageView.addGestureRecognizer(tapGestureRecognizer)
+        buttonRadius()
         
     }
+    
+    
+    func buttonRadius() {
+        
+        signUpButton.layer.cornerRadius = 5.0
+        //        signUpButton.layer.borderWidth = 1.0
+        //        signUpButton.layer.borderColor = UIColor.black.cgColor
+        
+        changeButton.layer.cornerRadius = 5.0
+        //        logInButton.layer.borderWidth = 1.0
+        //        logInButton.layer.borderColor = UIColor.white.cgColor
+        
+        
+        
+    }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -90,6 +109,7 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.black
         
     }
 
