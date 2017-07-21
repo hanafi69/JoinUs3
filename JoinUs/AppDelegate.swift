@@ -60,8 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let authStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainViewController = authStoryboard.instantiateViewController(withIdentifier: "TabBarViewController")
-        
-        
+//        let navController = UINavigationController()
+//        navController.pushViewController(mainViewController, animated: true)
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         

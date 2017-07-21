@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		823BA5D3E1BED5C10A9CC756 /* Pods_JoinUs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F75271291227D9A5A4EF008 /* Pods_JoinUs.framework */; };
 		E50FE88A1F20E1EA005AF0EF /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FE8891F20E1EA005AF0EF /* PostData.swift */; };
+		E50FE88C1F219046005AF0EF /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FE88B1F219046005AF0EF /* SearchVC.swift */; };
+		E50FE8921F219145005AF0EF /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FE8911F219145005AF0EF /* SearchCell.swift */; };
+		E50FE8981F21CDF6005AF0EF /* FullPageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FE8971F21CDF6005AF0EF /* FullPageMainViewController.swift */; };
 		E51086411F207BE500E58F92 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51086401F207BE500E58F92 /* UserProfileViewController.swift */; };
 		E51086431F207C2800E58F92 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51086421F207C2800E58F92 /* SettingsViewController.swift */; };
 		E51086471F2092D600E58F92 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51086461F2092D600E58F92 /* MainTableViewCell.swift */; };
@@ -36,6 +39,9 @@
 		5AE6FAFCADB6B89E33BF4372 /* Pods-JoinUs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JoinUs.release.xcconfig"; path = "Pods/Target Support Files/Pods-JoinUs/Pods-JoinUs.release.xcconfig"; sourceTree = "<group>"; };
 		6F75271291227D9A5A4EF008 /* Pods_JoinUs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JoinUs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50FE8891F20E1EA005AF0EF /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		E50FE88B1F219046005AF0EF /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		E50FE8911F219145005AF0EF /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		E50FE8971F21CDF6005AF0EF /* FullPageMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPageMainViewController.swift; sourceTree = "<group>"; };
 		E51086401F207BE500E58F92 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		E51086421F207C2800E58F92 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E51086461F2092D600E58F92 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,9 +169,12 @@
 			children = (
 				E56074311F1DB5BE004B2B1A /* MainViewController.swift */,
 				E51086461F2092D600E58F92 /* MainTableViewCell.swift */,
+				E50FE8971F21CDF6005AF0EF /* FullPageMainViewController.swift */,
 				E56074341F1DB723004B2B1A /* AddViewController.swift */,
 				E51086401F207BE500E58F92 /* UserProfileViewController.swift */,
 				E51086421F207C2800E58F92 /* SettingsViewController.swift */,
+				E50FE88B1F219046005AF0EF /* SearchVC.swift */,
+				E50FE8911F219145005AF0EF /* SearchCell.swift */,
 			);
 			name = JoinUsViewController;
 			sourceTree = "<group>";
@@ -297,11 +306,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E51086411F207BE500E58F92 /* UserProfileViewController.swift in Sources */,
+				E50FE8921F219145005AF0EF /* SearchCell.swift in Sources */,
 				E5301C931F1C7C43009E354A /* LoginViewController.swift in Sources */,
 				E5301C981F1CA6D7009E354A /* UserSignUpViewController.swift in Sources */,
+				E50FE8981F21CDF6005AF0EF /* FullPageMainViewController.swift in Sources */,
 				E56074351F1DB723004B2B1A /* AddViewController.swift in Sources */,
 				E5301C9A1F1CB0E6009E354A /* CircleImageView.swift in Sources */,
 				E50FE88A1F20E1EA005AF0EF /* PostData.swift in Sources */,
+				E50FE88C1F219046005AF0EF /* SearchVC.swift in Sources */,
 				E5301C911F1C7C2F009E354A /* RegisterViewController.swift in Sources */,
 				E5301C7B1F1C7100009E354A /* ViewController.swift in Sources */,
 				E5301C791F1C7100009E354A /* AppDelegate.swift in Sources */,

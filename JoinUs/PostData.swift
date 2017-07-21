@@ -15,46 +15,45 @@ class PostData {
     var username : String?
     var email : String?
     var category : String?
-    var description : String?
+    var eventDescription : String?
     var postID : String?
     var userID : String
     var timestamp : Date
-    var title : String
+    
     var startAt: String
     var endAt: String
-    var address : String?
+    var placemarkLocation : String?
     var lat : Double?
     var long : Double?
+    var name: String?
     
     
     init?(snapshot: DataSnapshot){
         
         self.postID = snapshot.key
 
-        guard
-            let dictionary = snapshot.value as? [String: Any],
-            let validUsername = dictionary["username"] as? String,
-            let validUserID = dictionary["userID"] as? String,
-            let validTimestamp = dictionary["timestamp"] as? Double,
-            let validTitle = dictionary["title"] as? String,
-            let validDescription = dictionary["description"] as? String,
-            let validStartAt = dictionary["startAt"] as? String,
-            let validEndAt = dictionary["endAt"] as? String,
-            let validCategory = dictionary["category"] as? String
-        
-        else { return nil }
+        guard let dictionary = snapshot.value as? [String : Any] else { return nil }
+        guard let validUsername = dictionary["username"] as? String else { return nil }
+        guard let validName = dictionary["name"] as? String else { return nil }
+        guard let validUserID = dictionary["userID"] as? String else { return nil }
+        guard let validTimestamp = dictionary["timeStamp"] as? Double else { return nil }
+        guard let validDescription = dictionary["eventDescription"] as? String else { return nil }
+        guard let validStartAt = dictionary["timeStart"] as? String else { return nil }
+        guard let validEndAt = dictionary["timeEnd"] as? String else { return nil }
+        guard let validCategory = dictionary["category"] as? String else { return nil }
         
         username = validUsername
         userID = validUserID
         timestamp = Date(timeIntervalSince1970: validTimestamp)
-        title = validTitle
-        description = validDescription
+        
+        eventDescription = validDescription
         startAt = validStartAt
         endAt = validEndAt
         category = validCategory
+        name = validName
         
-        if let validAddress = dictionary["locationAddress"] as? String{
-            address = validAddress
+        if let validPlacemark = dictionary["placeMarkLocation"] as? String{
+            placemarkLocation = validPlacemark
         }
         
         if let validLat = dictionary["lat"] as? Double{
